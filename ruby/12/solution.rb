@@ -8,7 +8,6 @@ elevation_map =
 # E = best signal (at elevation z)
 
 class Node
-  include Comparable
   attr_reader :elevation, :connections, :distance_to_goal, :position
 
   def initialize(x, y, elevation)
