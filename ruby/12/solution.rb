@@ -56,6 +56,16 @@ def draw_distance_map(nodes)
   end
 end
 
+def draw_elevation_map(nodes)
+  nodes.each_with_index do |row, i|
+    row.each_with_index do |node, j|
+      print "#{node.elevation} "
+    end
+    puts "\n"
+  end
+end
+
+
 height = elevation_map.size
 width = elevation_map.first.size
 nodes = Array.new(height) { Array.new(width) }
@@ -119,9 +129,13 @@ start_node = nodes[start[0]][start[1]]
 
 puts "Part 1 Result: #{start_node.distance_to_goal}"
 
+draw_elevation_map(nodes)
+
 # Part 2
 
 shortest_path_from_an_a =
   nodes.flatten.select { |n| n.elevation == 'a' }.map(&:distance_to_goal).min
 
 puts "Part 2 Result: #{shortest_path_from_an_a}"
+
+draw_distance_map(nodes)
