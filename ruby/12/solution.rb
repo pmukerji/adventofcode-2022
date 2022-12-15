@@ -1,4 +1,6 @@
 # Part 1:
+require 'rainbow'
+
 elevation_map =
   File.read('input.txt').
     split("\n").
@@ -56,10 +58,40 @@ def draw_distance_map(nodes)
   end
 end
 
+# https://colordesigner.io/gradient-generator
+COLORS = {
+  'a' => '#3d2dbb',
+  'b' => '#5126b4',
+  'c' => '#601ead',
+  'd' => '#6c14a6',
+  'e' => '#76059e',
+  'f' => '#7e0097',
+  'g' => '#85008f',
+  'h' => '#8b0087',
+  'i' => '#90007f',
+  'j' => '#940078',
+  'k' => '#980070',
+  'l' => '#9a0069',
+  'm' => '#9c0062',
+  'n' => '#9e005b',
+  'o' => '#9e0054',
+  'p' => '#9f004d',
+  'q' => '#9e0047',
+  'r' => '#9e0040',
+  's' => '#9d003a',
+  't' => '#9b0035',
+  'u' => '#9a002f',
+  'v' => '#98002a',
+  'w' => '#950025',
+  'x' => '#930320',
+  'y' => '#900f1c',
+  'z' => '#8d1717',
+}
+
 def draw_elevation_map(nodes)
   nodes.each_with_index do |row, i|
     row.each_with_index do |node, j|
-      print "#{node.elevation} "
+      print "#{Rainbow(node.elevation).color(COLORS[node.elevation])} "
     end
     puts "\n"
   end
