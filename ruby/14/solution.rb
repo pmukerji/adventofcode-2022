@@ -1,10 +1,19 @@
 # Part 1
+require 'rainbow'
+
 class Cave
   SYMBOLS = {
     'rock' => '#',
     'air' => '.',
     'sand' => 'o'
   }
+
+  COLORS = {
+    'o' => '#919155',
+    '.' => '#324758',
+    '#' => '#FFFFFF'
+  }
+
   attr_reader :grid
 
   def initialize(height, width)
@@ -57,7 +66,7 @@ class Cave
 
     puts "Cave:"
     grid.each do |row|
-      puts row[min_x..-1].join('')
+      puts row[min_x..-1].map { |v| Rainbow(v).color(COLORS[v]) }.join('')
     end
   end
 
@@ -144,6 +153,8 @@ settled_sand_count = cave.coordinates_for('sand').count
 
 puts "Part 1 Result: #{settled_sand_count}"
 
+cave.draw
+
 # Part 2
 
 cave = Cave.new(height + 2, width * 2)
@@ -168,3 +179,5 @@ end
 settled_sand_count = cave.coordinates_for('sand').count
 
 puts "Part 2 Result: #{settled_sand_count}"
+
+cave.draw
